@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import toast from "react-hot-toast";
 import { FaShareAlt, FaSearch } from "react-icons/fa";
 import { MdOutlineKeyboardReturn } from "react-icons/md";
 import getCountries from "../../../utils/getCountries";
@@ -61,7 +62,15 @@ export default function Header() {
           </div>
         )}
         <div className="flex space-x-4">
-          <button className="w-10 h-10 rounded-xl border bg-amber-50 focus:bg-gray-100 active:bg-gray-200">
+          <button
+            className="w-10 h-10 rounded-xl border bg-amber-50 focus:bg-gray-100 active:bg-gray-200"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast("Url copiada", {
+                icon: "😎",
+              });
+            }}
+          >
             <FaShareAlt className="h-5 w-5 m-auto text-gray-600" />
           </button>
         </div>
