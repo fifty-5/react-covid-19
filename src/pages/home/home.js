@@ -43,8 +43,6 @@ export default function Home() {
     }
   }, [data]);
 
-  console.log(globalData);
-
   return (
     <div className="grid gap-6">
       <div className="md:col-span-2 lg:col-span-1">
@@ -71,7 +69,7 @@ export default function Home() {
             <p>
               <strong>Porcentaje de muertes sobre casos confirmados</strong>:{" "}
               {globalData &&
-                globalData?.porcent_death &&
+                !isNaN(globalData?.porcent_death) &&
                 globalData?.porcent_death.toFixed(2)}{" "}
               %
             </p>
@@ -81,14 +79,14 @@ export default function Home() {
               </strong>
               :{" "}
               {globalData &&
-                globalData?.porcent_confirmed_population &&
+                !isNaN(globalData?.porcent_confirmed_population) &&
                 globalData?.porcent_confirmed_population.toFixed(2)}{" "}
               %
             </p>
             <p>
               <strong>Porcentaje de muertes de la población mundial</strong>:{" "}
               {globalData &&
-                globalData?.porcent_death_population &&
+                !isNaN(globalData?.porcent_death_population) &&
                 globalData?.porcent_death_population.toFixed(2)}{" "}
               %
             </p>
@@ -125,7 +123,7 @@ export default function Home() {
               <Legend />
               <CartesianGrid strokeDasharray="3 3" />
               <Bar
-                name="Porcent death"
+                name="Porcentaje de muertes"
                 dataKey="porcent_death"
                 fill="#1b7ce4"
                 background={{ fill: "#eee" }}
